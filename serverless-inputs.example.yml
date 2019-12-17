@@ -1,0 +1,3 @@
+schedule: rate(1 hour)
+aws_region: us-west-2
+vpc_id: vpc-123abc

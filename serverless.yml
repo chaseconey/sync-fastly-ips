@@ -1,0 +1,32 @@
+service: sync-fastly-ips
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ${file(./serverless-inputs.yml):aws_region}
+
+  # you can overwrite defaults here
+  #  stage: dev
+
+  # you can add statements to the Lambda function's IAM Role here
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ec2:DescribeSecurityGroups"
+        - "ec2:RevokeSecurityGroupIngress"
+        - "ec2:AuthorizeSecurityGroupEgress"
+        - "ec2:AuthorizeSecurityGroupIngress"
+        - "ec2:UpdateSecurityGroupRuleDescriptionsEgress"
+        - "ec2:CreateSecurityGroup"
+        - "ec2:RevokeSecurityGroupEgress"
+        - "ec2:UpdateSecurityGroupRuleDescriptionsIngress"
+      Resource: "*"
+
+functions:
+  sync:
+    handler: handler.sync
+    events:
+      - schedule: ${file(./serverless-inputs.yml):schedule}
+    environment:
+      REGION: ${file(./serverless-inputs.yml):aws_region}
+      VPC_ID: ${file(./serverless-inputs.yml):vpc_id}

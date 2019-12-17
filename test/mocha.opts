@@ -1,0 +1,4 @@
+test
+--require test/common
+--exclude test/fixtures/*
+--recursive
