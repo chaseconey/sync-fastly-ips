@@ -1,5 +1,7 @@
 ## Fastly Public IP Security Group Sync
 
+[![CircleCI](https://circleci.com/gh/chaseconey/sync-fastly-ips.svg?style=svg)](https://circleci.com/gh/chaseconey/sync-fastly-ips)
+
 A small-ish lambda to make sure that a security group has the most up-to-date public IP addresses for Fastly.
 
 After installing the lambda, a new security group will be created called `external-fastly-ips` that will have an up-to-date list of [public Fastly IPs](https://api.fastly.com/public-ip-list).
