@@ -28,7 +28,9 @@ This serverless deployment will create a few AWS resources to be aware of.
 
 ### Running Locally
 
-TBD
+```
+sls invoke local -f sync
+```
 
 ### Testing
 
